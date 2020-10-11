@@ -89,7 +89,7 @@ def Balance_get(date=datetime.date.today(),curr_month='September'):
     print(bal)
     print(f'Total Balance as on {datetime.date.today()} : {bal}\nBalance for {curr_month} : {Balance}\nIncome for {curr_month}: {get["Income"].sum()}\nExpense for {curr_month} : {get["Expenses"].sum()}')
 
-def balance_get():
+def total_balance_get():
     Bal = []
     date=datetime.date.today()
     months = ['January','February','March','April','May','June','July','August','September','October','November','December']
@@ -188,7 +188,7 @@ while True:
     elif message == 3:
         try:
             
-            balance_get()
+            total_balance_get()
         except:
             print('No Data to Show. Make sure that you have entered Income-Expense Details')
     else:
