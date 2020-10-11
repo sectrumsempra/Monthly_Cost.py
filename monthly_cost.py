@@ -70,11 +70,11 @@ def tracker(date = datetime.date.today() ,income = 0, expense = 0,particular=" "
         check = True
     database.to_csv(f'{curr_month}.csv',mode = decide,header=check,index=False)
     Balance_get(date,curr_month)
-    # print(income,expense,particular)
+    
 def Balance_get(date=datetime.date.today(),curr_month='September'):
     Bal = []
     months = ['January','February','March','April','May','June','July','August','September','October','November','December']
-    # months = months[0 : months.index(curr_month)]
+    
     get = pd.read_csv(f'{curr_month}.csv', index_col='Date')
     get.dropna(inplace=True)
     Balance = (get['Income'].sum() - get['Expenses'].sum()) 
@@ -93,7 +93,6 @@ def balance_get():
     Bal = []
     date=datetime.date.today()
     months = ['January','February','March','April','May','June','July','August','September','October','November','December']
-    # months = months[0 : months.index(curr_month)]
     year,month,date = map(int,str(date).split('-'))
     curr_month = month_tracker(month)
     print(curr_month,month)
@@ -113,7 +112,7 @@ def balance_get():
         except FileNotFoundError:
             pass
     bal = sum(Bal)
-    # print(bal)
+    
     print(f'Total Balance as on {datetime.date.today()} : {bal}\n')
 
 def values():
