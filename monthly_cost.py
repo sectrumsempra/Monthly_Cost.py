@@ -11,12 +11,12 @@ def chart():
     expense = []
     for namea in names :
             try:
-            get = pd.read_csv(f'{namea}.csv',index_col='Date')
-            income.append(get['Income'].sum())
-            expense.append(get['Expenses'].sum())
-            month.append(namea)
-        except FileNotFoundError:
-            pass
+                get = pd.read_csv(f'{namea}.csv',index_col='Date')
+                income.append(get['Income'].sum())
+                expense.append(get['Expenses'].sum())
+                month.append(namea)
+            except FileNotFoundError:
+                pass
     
     detail = df({
         'Income':income,
@@ -89,10 +89,14 @@ def Balance_get(date=datetime.date.today(),curr_month='September'):
     print(bal)
     print(f'Total Balance as on {datetime.date.today()} : {bal}\nBalance for {curr_month} : {Balance}\nIncome for {curr_month}: {get["Income"].sum()}\nExpense for {curr_month} : {get["Expenses"].sum()}')
 
-def balance_get(date=datetime.date.today(),curr_month='September'):
+def balance_get():
     Bal = []
+    date=datetime.date.today()
     months = ['January','February','March','April','May','June','July','August','September','October','November','December']
     # months = months[0 : months.index(curr_month)]
+    year,month,date = map(int,str(date).split('-'))
+    curr_month = month_tracker(month)
+    print(curr_month,month)
     get = pd.read_csv(f'{curr_month}.csv', index_col='Date')
     get.dropna(inplace=True)
     Balance = (get['Income'].sum() - get['Expenses'].sum()) 
@@ -138,7 +142,7 @@ def values():
             elif period == "2":
                 values()
             elif period == "3":
-                break
+                exit()
             else :
                 pass
 
@@ -166,7 +170,7 @@ def values():
             elif period == "2":
                 values()
             elif period == "3":
-                break
+                exit()
             else :
                 pass
     else :
@@ -184,6 +188,7 @@ while True:
             print("No Data to Plot. Make sure that you have entered Income-Expense Details.")
     elif message == 3:
         try:
+            
             balance_get()
         except:
             print('No Data to Show. Make sure that you have entered Income-Expense Details')
